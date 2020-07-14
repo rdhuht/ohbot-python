@@ -15,17 +15,17 @@ ohbot.move(3,1)
 ohbot.wait(2)
 
 # Move head back to the centre and say "Hello World"
-ohbot.move(1,5,1)
+ohbot.move(1, 5, 1)
 ohbot.say("Hello World")
 
 # Slowly increase the brightness of the eyes.
 
 for x in range(0,10):
 
-    ohbot.setEyeColour(x,x,x)
+    ohbot.setEyeColour(x, x, x)
     ohbot.wait(0.1)
 
-    ohbot.setEyeColour(0,0,0)
+    ohbot.setEyeColour(0, 0, 0)
     ohbot.wait(0.2)
 
     

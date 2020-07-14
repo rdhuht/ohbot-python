@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b36a85eb-a8c6-4bbb-a551-33cf09b1eb9f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/examples/emotionReflectDemo/Emotion_little_vgg.h5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/emotionReflectDemo/haarcascade_frontalface_default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/emotionReflectDemo/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +24,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/examples/emotionReflectDemo" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/examples/emotionReflectDemo" />
+    </key>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -40,6 +43,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="301" y="23" width="838" height="797" key="CommitChangelistDialog2" timestamp="1594703115891">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="301" y="23" width="838" height="797" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1594703115891" />
     <state x="229" y="60" key="SettingsEditor" timestamp="1594702790217">
       <screen x="0" y="23" width="1440" height="797" />
     </state>

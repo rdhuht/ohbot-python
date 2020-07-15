@@ -1,26 +1,35 @@
-##Example of ohbot intergrated with wolfram alpha and wikipedia web service
-## recognition voice and response by ohbot TODO
+##  Example of ohbot intergrated with wolfram alpha and wikipedia web service
+##  recognition voice and response by ohbot TODO
 
 import wolframalpha
 from ohbot import ohbot
 from random import *
 import threading
-
+import pyttsx3
+import speech_recognition as sr
+import datetime
 import wikipedia
+import webbrowser
+import os
+import smtplib
 
 wiki = False
 
 wolfclient = wolframalpha.Client('34YK5Q-QE9KPXKH35')
 
-connectingPhrases = ['Let me think', 'Just a second', 'give me a moment', 'thats an easy one', 'thats tricky',
-                     'i know this one', 'let me get you an answer']
+connectingPhrases = ['Let me think',
+                     'Just a second',
+                     'give me a moment',
+                     'thats an easy one',
+                     'thats tricky',
+                     'i know this one',
+                     'let me get you an answer']
 
 ohbot.reset()
 
 
 def handleInput():
     while True:
-
         text = input("Question:\n")
         ohbot.say(text)
         ohbot.setEyeColour(10, 5, 0, True)
@@ -50,7 +59,6 @@ def handleInput():
 
 def handleInputWiki():
     while True:
-
         text = input("Define:\n")
         ohbot.say(text)
         ohbot.setEyeColour(10, 5, 0, True)
@@ -93,17 +101,36 @@ def blinking():
         ohbot.wait(randint(0, 6))
 
 
-t = threading.Thread(target=moveLoop, args=())
+# 根据当前事件问候
+def withMe():
+    hour = int(datetime.datetime.now().hour)
+    if hour >= 0 and hour < 12:
+        ohbot.say("Good morning!")
+    elif hour >= 12 and hour < 18:
+        ohbot.say("Good Afternoon")
+    else:
+        ohbot.say('Good Evening')
+    ohbot.say("I am ohbot. How may I help you?")
 
-if wiki:
-    t2 = threading.Thread(target=handleInputWiki, args=())
-else:
-    t2 = threading.Thread(target=handleInput, args=())
 
-t3 = threading.Thread(target=blinking, args=())
+# microphone listen
+def takeCommand():
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print('Listening')
+        audio = r.listen(source)
 
-t.start()
-t2.start()
-t3.start()
+    try:
+        print('Recognizing...')
+        query = r.recognize_google(audio, language='en-us')
+        print(f'user said: {query}\n')
+        # TODO
+        # handleInput()
+    except Exception as e:
+        print("Say that again please")
 
+
+ohbot.say("Initializing ohbot")
+withMe()
+takeCommand()
 ohbot.say("Hello ohbot here, please type in a question")

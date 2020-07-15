@@ -47,26 +47,22 @@ def blinkLids():
             ohbot.wait(random() * 6)
 
 
-# TODO 根据opencv检测的人脸位置，朝向那个方向
-def lookatPerson(face_rect):
-    coors = []
+# TODO 根据opencv检测的人脸位置，朝向那个方向, 方向可能是反的，需要测试
+def lookatPerson(face_rect, windowSize):
+    window_width, window_height = windowSize[2], windowSize[3]
+    # print(window_width, window_height)  # 窗口的大小640，480
     x, w, y, h = face_rect
     middlex, middley = (x + w) / 2, (y + h) / 2
+    headTurn, headNod = 2 * middlex / (window_width / 10), 2 * middley / (window_height / 10)
     if not (middlex == 0 or middley == 0):
-        # 假设摄像头是放正的，计算机器人头朝向哪一边
-        if middlex < 100:
-            ohbot.move(ohbot.HEADTURN, 3)
-        elif middlex < 200:
-            ohbot.move(ohbot.HEADTURN, 5)
-        else:
-            ohbot.move(ohbot.HEADTURN, 7)
+        print(headTurn, headNod)
+        # 0 - 160 - 320 - 480 - 640 x
+        # 0                      10
+        ohbot.move(ohbot.HEADTURN, headTurn)
 
-        if middley < 100:
-            ohbot.move(ohbot.HEADNOD, 3)
-        elif middley < 200:
-            ohbot.move(ohbot.HEADNOD, 5)
-        else:
-            ohbot.move(ohbot.HEADNOD, 7)
+        # 0 - 160 - 320 - 480 y
+        # 0               10
+        ohbot.move(ohbot.HEADNOD, headNod)
 
 
 
@@ -201,7 +197,7 @@ while True:
         roi_gray = gray[y:y + h, x:x + w]
         roi_gray = cv2.resize(roi_gray, (48, 48), interpolation=cv2.INTER_AREA)
         rect, face, image = face_detector(frame)
-        lookatPerson(rect)
+        lookatPerson(rect, windowSize)
         if np.sum([roi_gray]) != 0:
             roi = roi_gray.astype('float') / 255.0
             roi = img_to_array(roi)
@@ -215,8 +211,8 @@ while True:
         else:
             cv2.putText(frame, 'No Face Found', (20, 60), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 255, 0), 3)
             label = "No Face Found!"
-    # print(label)
     cv2.imshow('Emotion Detector', frame)
+    windowSize = cv2.getWindowImageRect("Emotion Detector")
     emotion_reflect(label)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break

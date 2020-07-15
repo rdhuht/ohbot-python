@@ -1,4 +1,5 @@
 ##Example of ohbot intergrated with wolfram alpha and wikipedia web service
+## recognition voice and response by ohbot TODO
 
 import wolframalpha
 from ohbot import ohbot

@@ -24,7 +24,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b36a85eb-a8c6-4bbb-a551-33cf09b1eb9f" name="Default Changelist" comment="" />
+    <list default="true" id="b36a85eb-a8c6-4bbb-a551-33cf09b1eb9f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/examples/wolframBetaOhbot.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/wolframBetaOhbot.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

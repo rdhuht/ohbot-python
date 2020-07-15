@@ -160,10 +160,10 @@ t5 = threading.Thread(target=eyeCol, args=())
 
 # 启动所有线程
 t1.start()
-t2.start()
+# t2.start()
 # t3.start()
 # t4.start()
-t5.start()
+# t5.start()
 
 ohbot.say("hello")
 

@@ -597,7 +597,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/examples" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/examples/emotionReflectDemo" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -606,7 +606,7 @@
       <recent name="$PROJECT_DIR$/examples/emotionReflectDemo" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.wolframBetaOhbot">
+  <component name="RunManager" selected="Python.run1 (1)">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ohbot-python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -714,10 +714,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.run1 (1)" />
         <item itemvalue="Python.wolframBetaOhbot" />
         <item itemvalue="Python.wolframAlphaOhbot" />
         <item itemvalue="Python.main" />
-        <item itemvalue="Python.run1 (1)" />
         <item itemvalue="Python.run1" />
       </list>
     </recent_temporary>
@@ -752,30 +752,30 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="301" y="23" width="838" height="797" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1594703115891" />
-    <state width="1493" height="298" key="GridCell.Tab.0.bottom" timestamp="1594820724074">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1419" height="289" key="GridCell.Tab.0.bottom" timestamp="1594879449780">
+      <screen x="0" y="23" width="1440" height="797" />
     </state>
     <state width="1419" height="169" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1594712924270" />
     <state width="1493" height="298" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1594820724074" />
-    <state width="1419" height="303" key="GridCell.Tab.0.bottom/0.23.1440.797@0.23.1440.797" timestamp="1594713222400" />
-    <state width="1493" height="298" key="GridCell.Tab.0.center" timestamp="1594820724074">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1419" height="289" key="GridCell.Tab.0.bottom/0.23.1440.797@0.23.1440.797" timestamp="1594879449780" />
+    <state width="1419" height="289" key="GridCell.Tab.0.center" timestamp="1594879449779">
+      <screen x="0" y="23" width="1440" height="797" />
     </state>
     <state width="1419" height="169" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1594712924268" />
     <state width="1493" height="298" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1594820724074" />
-    <state width="1419" height="303" key="GridCell.Tab.0.center/0.23.1440.797@0.23.1440.797" timestamp="1594713222398" />
-    <state width="1493" height="298" key="GridCell.Tab.0.left" timestamp="1594820724074">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1419" height="289" key="GridCell.Tab.0.center/0.23.1440.797@0.23.1440.797" timestamp="1594879449779" />
+    <state width="1419" height="289" key="GridCell.Tab.0.left" timestamp="1594879449778">
+      <screen x="0" y="23" width="1440" height="797" />
     </state>
     <state width="1419" height="169" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1594712924267" />
     <state width="1493" height="298" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1594820724074" />
-    <state width="1419" height="303" key="GridCell.Tab.0.left/0.23.1440.797@0.23.1440.797" timestamp="1594713222398" />
-    <state width="1493" height="298" key="GridCell.Tab.0.right" timestamp="1594820724074">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1419" height="289" key="GridCell.Tab.0.left/0.23.1440.797@0.23.1440.797" timestamp="1594879449778" />
+    <state width="1419" height="289" key="GridCell.Tab.0.right" timestamp="1594879449779">
+      <screen x="0" y="23" width="1440" height="797" />
     </state>
     <state width="1419" height="169" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1594712924269" />
     <state width="1493" height="298" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1594820724074" />
-    <state width="1419" height="303" key="GridCell.Tab.0.right/0.23.1440.797@0.23.1440.797" timestamp="1594713222399" />
+    <state width="1419" height="289" key="GridCell.Tab.0.right/0.23.1440.797@0.23.1440.797" timestamp="1594879449779" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1594783490902">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

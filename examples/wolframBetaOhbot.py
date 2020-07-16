@@ -122,7 +122,7 @@ def takeCommand():
 
     try:
         print('Recognizing...')
-        query = r.recognize_google(audio, language='en-us')
+        query = r.recognize_ibm(audio)
         print(f'user said: {query}\n')
         # TODO
         # handleInput()

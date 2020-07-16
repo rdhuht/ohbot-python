@@ -21,9 +21,10 @@ classifier = load_model('Emotion_little_vgg.h5')
 
 # 检测表情分5类
 class_labels = ['Angry', 'Happy', 'Neutral', 'Sad', 'Surprise']
-global last_label, label
+global last_label, label, rect
 last_label = None
 label = None
+rect = None
 
 
 def blinkLids():
@@ -50,20 +51,19 @@ def blinkLids():
 # TODO 根据opencv检测的人脸位置，朝向那个方向, 方向可能是反的，需要测试
 def lookatPerson(face_rect, windowSize):
     window_width, window_height = windowSize[2], windowSize[3]
-    # print(window_width, window_height)  # 窗口的大小640，480
-    x, w, y, h = face_rect
-    middlex, middley = (x + w) / 2, (y + h) / 2
-    headTurn, headNod = 2 * middlex / (window_width / 10), 2 * middley / (window_height / 10)
-    if not (middlex == 0 or middley == 0):
-        print(headTurn, headNod)
-        # 0 - 160 - 320 - 480 - 640 x
-        # 0                      10
-        ohbot.move(ohbot.HEADTURN, headTurn)
-
-        # 0 - 160 - 320 - 480 y
-        # 0               10
-        ohbot.move(ohbot.HEADNOD, headNod)
-
+    if face_rect is not None:
+        x, w, y, h = face_rect
+        xm, ym = x + w, y + h
+        if not (xm == 0 or ym == 0):
+            xm = xm // (window_width // 10)
+            ym = ym // (window_height // 10)
+            print(xm, ym)
+            ohbot.move(ohbot.HEADTURN, abs(10-xm) + 1)
+            ohbot.move(ohbot.HEADNOD, abs(10-ym) + 1)
+            ohbot.move(ohbot.EYETURN, xm)
+            ohbot.move(ohbot.EYETILT, abs(10 - ym) + 1)
+            ohbot.setEyeColour(10 - ym, ym, xm)
+        ohbot.wait(0.1)
 
 
 def randomLook():
@@ -197,7 +197,6 @@ while True:
         roi_gray = gray[y:y + h, x:x + w]
         roi_gray = cv2.resize(roi_gray, (48, 48), interpolation=cv2.INTER_AREA)
         rect, face, image = face_detector(frame)
-        lookatPerson(rect, windowSize)
         if np.sum([roi_gray]) != 0:
             roi = roi_gray.astype('float') / 255.0
             roi = img_to_array(roi)
@@ -213,6 +212,7 @@ while True:
             label = "No Face Found!"
     cv2.imshow('Emotion Detector', frame)
     windowSize = cv2.getWindowImageRect("Emotion Detector")
+    lookatPerson(rect, windowSize)
     emotion_reflect(label)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break

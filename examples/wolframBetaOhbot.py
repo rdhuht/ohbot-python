@@ -124,7 +124,7 @@ def takeCommand():
         print('Recognizing...')
         query = r.recognize_ibm(audio)
         print(f'user said: {query}\n')
-        # TODO
+        # TODO 一直在listening，没有打印出说话的内容来
         # handleInput()
     except Exception as e:
         print("Say that again please")

@@ -122,7 +122,7 @@ def takeCommand():
 
     try:
         print('Recognizing...')
-        query = r.recognize_ibm(audio)
+        query = r.recognize_bing(audio)
         print(f'user said: {query}\n')
         # TODO 一直在listening，没有打印出说话的内容来
         # handleInput()

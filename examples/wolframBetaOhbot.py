@@ -110,7 +110,7 @@ def withMe():
         ohbot.say("Good Afternoon")
     else:
         ohbot.say('Good Evening')
-    ohbot.say("I am ohbot. How may I help you?")
+    # ohbot.say("I am ohbot. How may I help you?")
 
 
 # microphone listen
@@ -119,18 +119,23 @@ def takeCommand():
     with sr.Microphone() as source:
         print('Listening')
         audio = r.listen(source)
+    print(type(audio))
+    # try:
+    print('Recognizing...')
+    query = r.recognize_bing(audio, key="38d239c4c6174854b7fd666eedfd67d2")  # 1 bing
+    # query = r.recognize_sphinx(audio)  # 2 环境搭建复杂，不实用
+    # query = r.recognize_google(audio)  # 3 网络慢,speech_recognition.RequestError: recognition connection failed: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+    # query = r.recognize_ibm(audio, username="7ea013a0-f3c6-420f-b787-62eabc334a71", password='201205211314jC')  # 4 IBM不再提供username和pwd的配合使用服务，之恩那个用key，但rs库没更新
+    print(f'user said: {query}\n')
+    # TODO 识别失败，先尝试bing，再尝试shpinx离线识别
+    # handleInput()
+    # except Exception as e:
+    #     print("Say that again please")
 
-    try:
-        print('Recognizing...')
-        query = r.recognize_bing(audio)
-        print(f'user said: {query}\n')
-        # TODO 一直在listening，没有打印出说话的内容来
-        # handleInput()
-    except Exception as e:
-        print("Say that again please")
 
-
-ohbot.say("Initializing ohbot")
+# ohbot.say("Initializing ohbot")
 withMe()
-takeCommand()
-ohbot.say("Hello ohbot here, please type in a question")
+while True:
+    takeCommand()
+# ohbot.say("Hello ohbot here, please type in a question")
+

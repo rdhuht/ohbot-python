@@ -11,7 +11,7 @@ wiki = False
 
 ## please replace ???? with your own wolframalpha client id.
 
-wolfclient = wolframalpha.Client('??????-??????????')
+wolfclient = wolframalpha.Client('34YK5Q-QE9KPXKH35')
 
 connectingPhrases = ['Let me think', 'Just a second', 'give me a moment', 'thats an easy one', 'thats tricky',
                      'i know this one', 'let me get you an answer']

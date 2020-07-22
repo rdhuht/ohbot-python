@@ -1,12 +1,13 @@
 ##  Example of ohbot intergrated with wolfram alpha and wikipedia web service
 ##  recognition voice and response by ohbot TODO
 
+import azure.cognitiveservices.speech as speechsdk
 import wolframalpha
 from ohbot import ohbot
 from random import *
 import threading
 import pyttsx3
-import speech_recognition as sr
+# import speech_recognition as sr 替换成azure方案
 import datetime
 import wikipedia
 import webbrowser
@@ -15,6 +16,9 @@ import smtplib
 
 wiki = False
 
+key = input('key:')
+speech_key, service_region = key, "eastus"
+speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region)
 wolfclient = wolframalpha.Client('34YK5Q-QE9KPXKH35')
 
 connectingPhrases = ['Let me think',
@@ -28,39 +32,9 @@ connectingPhrases = ['Let me think',
 ohbot.reset()
 
 
-def handleInput():
-    while True:
-        text = input("Question:\n")
-        ohbot.say(text)
-        ohbot.setEyeColour(10, 5, 0, True)
-        randIndex = randrange(0, len(connectingPhrases))
-
-        choice = connectingPhrases[randIndex]
-        ohbot.move(ohbot.HEADTURN, 5)
-        ohbot.move(ohbot.EYETILT, 7)
-        ohbot.move(ohbot.HEADNOD, 9)
-        ohbot.say(choice)
-
-        try:
-            res = wolfclient.query(text)
-            ans = next(res.results).text
-            ans = ans.replace("|", ".")
-            ohbot.say(ans)
-            ohbot.setEyeColour(0, 10, 0, True)
-
-        except:
-
-            print('Answer not available')
-            ohbot.say("Answer not available")
-            ohbot.setEyeColour(10, 0, 0, True)
-
-        ohbot.move(ohbot.HEADTURN, 5)
-
-
-def handleInputWiki():
-    while True:
-        text = input("Define:\n")
-        ohbot.say(text)
+def handleInputWiki(text):
+    if not text == None:
+        ohbot.say("You ask this question to me " + text)
         ohbot.setEyeColour(10, 5, 0, True)
         randIndex = randrange(0, len(connectingPhrases))
 
@@ -110,32 +84,29 @@ def withMe():
         ohbot.say("Good Afternoon")
     else:
         ohbot.say('Good Evening')
-    # ohbot.say("I am ohbot. How may I help you?")
+    ohbot.say("I am ohbot. How may I help you?")
 
 
 # microphone listen
 def takeCommand():
-    r = sr.Recognizer()
-    with sr.Microphone() as source:
-        print('Listening')
-        audio = r.listen(source)
-    print(type(audio))
-    # try:
-    print('Recognizing...')
-    query = r.recognize_bing(audio, key="38d239c4c6174854b7fd666eedfd67d2")  # 1 bing
-    # query = r.recognize_sphinx(audio)  # 2 环境搭建复杂，不实用
-    # query = r.recognize_google(audio)  # 3 网络慢,speech_recognition.RequestError: recognition connection failed: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
-    # query = r.recognize_ibm(audio, username="7ea013a0-f3c6-420f-b787-62eabc334a71", password='201205211314jC')  # 4 IBM不再提供username和pwd的配合使用服务，之恩那个用key，但rs库没更新
-    print(f'user said: {query}\n')
-    # TODO 识别失败，先尝试bing，再尝试shpinx离线识别
-    # handleInput()
-    # except Exception as e:
-    #     print("Say that again please")
+    # Creates a recognizer with the given settings
+    speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)
+    result = speech_recognizer.recognize_once()
+    # Checks result.
+    if result.reason == speechsdk.ResultReason.RecognizedSpeech:
+        print("Recognized: {}".format(result.text))
+        return result.text
+    elif result.reason == speechsdk.ResultReason.NoMatch:
+        print("No speech could be recognized: {}".format(result.no_match_details))
+    elif result.reason == speechsdk.ResultReason.Canceled:
+        cancellation_details = result.cancellation_details
+        print("Speech Recognition canceled: {}".format(cancellation_details.reason))
+        if cancellation_details.reason == speechsdk.CancellationReason.Error:
+            print("Error details: {}".format(cancellation_details.error_details))
 
 
-# ohbot.say("Initializing ohbot")
 withMe()
 while True:
-    takeCommand()
-# ohbot.say("Hello ohbot here, please type in a question")
-
+    text = takeCommand()
+    if not text is None:
+        handleInputWiki(text)
